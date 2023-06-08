@@ -20,4 +20,16 @@ export interface Children {
   children?: ReactNode
 }
 
+export interface User {
+  authenticated: boolean
+  id?: string
+  name?: string
+  authToken?: string
+}
+
+export interface AuthContextData {
+  user: User | null
+  setUser: (user: User | null) => void
+}
+
 type AuthData = [boolean, Roles[] | never[]]

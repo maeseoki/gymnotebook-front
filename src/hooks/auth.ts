@@ -1,13 +1,13 @@
-import { AuthData, JwtPayload, Role, Roles } from '../types'
+import { AuthContextData, JwtPayload, Role, Roles } from '../types'
 // Creamos la interfaz para el hook. Puede ser un array de dos elementos:
 // - El primero es un booleano que indica si está autenticado o no
 // - El segundo es un array de strings con los roles del usuario
 // O también puede
-export function useGetUser (): AuthData {
+export function useGetUser (): AuthContextData {
   const token = localStorage.getItem('token')
 
   // Si el token no existe, no está autenticado
-  if (token === null) return [false, []]
+  if (token === null) return {}
 
   const decodedToken = parseJwt(token)
 
