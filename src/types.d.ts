@@ -22,14 +22,26 @@ export interface Children {
 
 export interface User {
   authenticated: boolean
-  id?: string
   name?: string
   authToken?: string
+  roles?: Roles[]
 }
 
 export interface AuthContextData {
   user: User | null
   setUser: (user: User | null) => void
+  removeUser: () => void
 }
 
-type AuthData = [boolean, Roles[] | never[]]
+export interface Auth {
+  user: User | null
+  addUser: (user: User) => void
+  removeUser: () => void
+}
+
+export interface LocalStorage {
+  value: string | null
+  setItem: (key: string, value: string) => void
+  getItem: (key: string) => string | null
+  removeItem: (key: string) => void
+}
