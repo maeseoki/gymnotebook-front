@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { AuthContextData } from '../../types'
-import { AuthContext } from '../../App'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
 
 export default function Index () {
   const { user } = useContext<AuthContextData>(AuthContext)

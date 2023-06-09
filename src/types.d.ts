@@ -29,19 +29,18 @@ export interface User {
 
 export interface AuthContextData {
   user: User | null
-  setUser: (user: User | null) => void
+  setUser: (token: string | null) => void
   removeUser: () => void
 }
 
 export interface Auth {
   user: User | null
-  addUser: (user: User) => void
+  addUser: (token: string | null) => void
   removeUser: () => void
 }
 
 export interface LocalStorage {
   value: string | null
   setItem: (key: string, value: string) => void
-  getItem: (key: string) => string | null
   removeItem: (key: string) => void
 }

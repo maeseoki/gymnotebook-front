@@ -1,24 +1,18 @@
 import { useState } from 'react'
 import { LocalStorage } from '../types'
 
-export const useLocalStorage = (): LocalStorage => {
-  const [value, setValue] = useState<string | null>(null)
+export const useLocalStorage = (key: string): LocalStorage => {
+  const [value, setValue] = useState<string | null>(() => localStorage.getItem(key))
 
-  const setItem = (key: string, value: string) => {
+  const setItem = (value: string) => {
     localStorage.setItem(key, value)
     setValue(value)
   }
 
-  const getItem = (key: string) => {
-    const value = localStorage.getItem(key)
-    setValue(value)
-    return value
-  }
-
-  const removeItem = (key: string) => {
+  const removeItem = () => {
     localStorage.removeItem(key)
     setValue(null)
   }
 
-  return { value, setItem, getItem, removeItem }
+  return { value, setItem, removeItem }
 }

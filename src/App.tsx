@@ -1,20 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useAuth } from './hooks/useAuth'
-import { createContext } from 'react'
-import { AuthContextData } from './types'
 import { Container } from '@chakra-ui/react'
-
-export const AuthContext = createContext<AuthContextData>({
-  user: null,
-  setUser: () => null,
-  removeUser: () => null
-})
+import { AuthContext } from './context/AuthContext'
+import { useUser } from './hooks/userUser'
 
 export default function App () {
-  // Creamos un contexto para pasar el estado de autenticación a los componentes hijos
-  const { user, setUser, removeUser } = useAuth()
+  const { user, addUser: setUser, removeUser } = useUser()
 
-  if (user !== null) {
+  if (user === null) {
     return (
       <Navigate to='/login' />
     )
