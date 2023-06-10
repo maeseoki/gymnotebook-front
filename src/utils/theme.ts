@@ -50,6 +50,10 @@ const theme = extendTheme({
       }
     }
   },
+  fonts: {
+    heading: '\'Space Grotesk Variable\', sans-serif',
+    body: '\'Space Grotesk Variable\', sans-serif'
+  },
   config: {
     initialColorMode: 'dark',
     useSystemColorMode: false

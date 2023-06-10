@@ -12,5 +12,11 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': 'warn',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ]
   }
 }

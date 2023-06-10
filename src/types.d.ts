@@ -41,6 +41,44 @@ export interface Auth {
 
 export interface LocalStorage {
   value: string | null
-  setItem: (key: string, value: string) => void
-  removeItem: (key: string) => void
+  setItem: (value: string) => void
+  removeItem: () => void
 }
+
+export interface GenericResponse {
+  message: string
+}
+
+type Token = `${string}.${string}.${string}`
+
+export interface LoginRequest {
+  username: string
+  password: string
+}
+
+export interface LoginResponse {
+  id: number
+  username: string
+  email: string
+  roles: Roles[]
+  accessToken: Token
+  tokenType: 'Bearer'
+}
+
+export interface SignUpRequest {
+  username: string
+  email: string
+  password: string
+  role: Roles[]
+}
+
+export interface SignUpResponse extends GenericResponse {}
+
+export interface VerifyUserRequest {
+  username: string
+  email: string
+}
+
+export interface VerifyUserResponse extends GenericResponse {}
+
+export interface LogoutResponse extends GenericResponse {}
