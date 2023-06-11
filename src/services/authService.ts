@@ -15,12 +15,11 @@ export const loginUser = async (loginRequest: LoginRequest): Promise<LoginRespon
 }
 
 export const signUpUser = async (singUpRequest: SignUpRequest): Promise<SignUpResponse> => {
-  const { username, email, password, role } = singUpRequest
+  const { username, email, password } = singUpRequest
   const response = await apiClient.post('auth/signup', {
     username,
     email,
-    password,
-    role
+    password
   })
   return response.data
 }

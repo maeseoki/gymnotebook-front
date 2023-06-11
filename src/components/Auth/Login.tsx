@@ -6,11 +6,13 @@ import { loginUser } from '../../services/authService'
 import { LoginRequest } from '../../types'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../hooks/userUser'
+import { useGenericToast } from '../../hooks/useGenericToast'
 
 export default function Login () {
   const navigate = useNavigate()
   const { addUser } = useUser()
   const toast = useToast()
+  const { notImplementedToast } = useGenericToast()
   const [loading, setLoading] = useState(false)
   const [loginRequest, setLoginRequest] = useState<LoginRequest>({
     username: '',
@@ -37,6 +39,10 @@ export default function Login () {
     } finally {
       setLoading(false)
     }
+  }
+
+  const passwordForgotten = () => {
+    notImplementedToast()
   }
 
   return (
@@ -69,17 +75,33 @@ export default function Login () {
               <Stack spacing='5'>
                 <FormControl>
                   <FormLabel htmlFor='username'>Nombre de usuario</FormLabel>
-                  <Input id='username' type='text' value={loginRequest.username} onChange={e => setLoginRequest({ ...loginRequest, username: e.target.value })} />
+                  <Input
+                    id='username'
+                    type='text'
+                    value={loginRequest.username}
+                    onChange={e => setLoginRequest({ ...loginRequest, username: e.target.value })}
+                  />
                 </FormControl>
                 <PasswordField value={loginRequest.password} onChange={e => setLoginRequest({ ...loginRequest, password: e.target.value })} />
               </Stack>
               <HStack justify='flex-end'>
-                <Button variant='link' colorScheme='primary' size='sm'>
+                <Button
+                  variant='link'
+                  colorScheme='primary'
+                  size='sm'
+                  onClick={passwordForgotten}
+                >
                   ¿Olvidaste tu contraseña?
                 </Button>
               </HStack>
               <Stack spacing='6'>
-                <Button type='submit' isLoading={loading} loadingText='Calentando...' variant='outline'>Iniciar sesión</Button>
+                <Button
+                  type='submit'
+                  isLoading={loading}
+                  loadingText='Calentando...'
+                  variant='outline'
+                >Iniciar sesión
+                </Button>
               </Stack>
             </Stack>
           </form>

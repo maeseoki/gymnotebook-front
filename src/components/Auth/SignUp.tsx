@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { signUpUser } from '../../services/authService'
 import Logo from '../Shared/Logo'
 import { PasswordField } from './PasswordFIeld'
-import { Roles, SignUpRequest } from '../../types'
+import { SignUpRequest, SignUpResponse } from '../../types'
+import { AxiosError } from 'axios'
 
 export default function SignUp () {
   const navigate = useNavigate()
@@ -13,32 +14,52 @@ export default function SignUp () {
   const [signupRequest, setSignupRequest] = useState<SignUpRequest>({
     username: '',
     password: '',
-    email: '',
-    role: ['ROLE_USER' as Roles]
+    email: ''
   })
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    // Validamos con regex el que nombre de usuario sea [az-AZ-09] y que tenga entre 4 y 20 caracteres
+    const usernameRegex = /^[a-zA-Z0-9]{4,20}$/
+    if (!usernameRegex.test(signupRequest.username)) {
+      toast({
+        description: 'El nombre de usuario debe tener entre 4 y 20 caracteres y solo puede contener letras y números',
+        status: 'warning'
+      })
+      return
+
+      // Validamos con regex el que el email sea válido
+    } else if (signupRequest.email.match(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/) == null) {
+      toast({
+        description: 'El email no es válido',
+        status: 'warning'
+      })
+      return
+
+      // Validamos con regex el que la contraseña tenga entre 8 y 20 caracteres, al menos una letra mayúscula, una minúscula y un número
+    } else if (signupRequest.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/) == null) {
+      toast({
+        description: 'La contraseña debe tener entre 8 y 20 caracteres, al menos una letra mayúscula, una minúscula y un número',
+        status: 'warning'
+      })
+      return
+    }
+
     setLoading(true)
     try {
-      await signUpUser(signupRequest)
-      navigate('/login') // redirect to login after successful signup
+      const response = await signUpUser(signupRequest)
+      navigate('/login') // Redirigiendo a la página de login después de crear la cuenta
       toast({
-        title: 'Success',
-        description: 'Account created successfully, please login',
-        status: 'success',
-        duration: 4000,
-        isClosable: true,
-        variant: 'top-accent'
+        title: response.message,
+        description: 'Inicia sesión para empezar',
+        status: 'success'
       })
     } catch (error) {
+      const axiosError = error as AxiosError<SignUpResponse>
       toast({
         title: 'Error',
-        description: 'Unable to create account',
-        status: 'error',
-        duration: 4000,
-        isClosable: true,
-        variant: 'top-accent'
+        description: axiosError.response?.data?.message,
+        status: 'error'
       })
       console.error('Error during signup: ', error)
     } finally {
@@ -85,7 +106,7 @@ export default function SignUp () {
                 <PasswordField value={signupRequest.password} onChange={e => setSignupRequest({ ...signupRequest, password: e.target.value })} />
               </Stack>
               <Stack spacing='6'>
-                <Button type='submit' isLoading={loading} loadingText='Creating account...' variant='outline'>Crear cuenta</Button>
+                <Button type='submit' isLoading={loading} loadingText='Creando...' variant='outline'>Crear cuenta</Button>
               </Stack>
             </Stack>
           </form>

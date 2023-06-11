@@ -1,6 +1,6 @@
-import { extendTheme } from '@chakra-ui/react'
+import { ToastProviderProps, extendTheme } from '@chakra-ui/react'
 
-const theme = extendTheme({
+export const theme = extendTheme({
   colors: {
     primary: {
       50: '#fff8e6',
@@ -25,6 +25,14 @@ const theme = extendTheme({
       700: '#214b92',
       800: '#173262',
       900: '#0c1a33'
+    },
+    gradients: {
+      primaryGradient: 'linear-gradient(to right, #FBB021, #b36a00)',
+      secondaryGradient: 'linear-gradient(to right, #84aaf7, #357ef1)',
+      primaryToSecondary: 'linear-gradient(to right, #F5A101, #357ef1)',
+      secondaryToPrimary: 'linear-gradient(to right, #357ef1, #F5A101)',
+      primaryToSecondaryHover: 'linear-gradient(to right, #FBB021, #357ef1)',
+      secondaryToPrimaryHover: 'linear-gradient(to right, #357ef1, #FBB021)'
     }
   },
   components: {
@@ -46,6 +54,20 @@ const theme = extendTheme({
           _hover: {
             bg: 'primary.600'
           }
+        },
+        navigation: {
+          bg: 'transparent',
+          border: 'none',
+          color: 'primary.300',
+          fontSize: '3xl',
+          _hover: {
+            bg: 'transparent',
+            color: 'primary.600'
+          },
+          _active: {
+            bg: 'transparent',
+            color: 'secondary.300'
+          }
         }
       }
     }
@@ -60,4 +82,11 @@ const theme = extendTheme({
   }
 })
 
-export default theme
+export const toastOptions: ToastProviderProps = {
+  defaultOptions: {
+    position: 'top',
+    duration: 4000,
+    isClosable: true,
+    variant: 'solid'
+  }
+}

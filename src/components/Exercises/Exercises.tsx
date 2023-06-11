@@ -1,8 +1,10 @@
+import { Button } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 
 export default function Exercises () {
   return (
     <div>
-      <h1>Exercises</h1>
+      <Button as={RouterLink} to='/exercises/new'>Nuevo Ejercicio</Button>
     </div>
   )
 }

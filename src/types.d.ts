@@ -5,6 +5,12 @@ export interface JwtPayload {
   exp: number
 }
 
+export interface User {
+  authenticated: boolean
+  name?: string
+  authToken?: string
+  roles?: Roles[]
+}
 export interface Role {
   authority: Roles
 }
@@ -18,13 +24,6 @@ export enum Roles {
 
 export interface Children {
   children?: ReactNode
-}
-
-export interface User {
-  authenticated: boolean
-  name?: string
-  authToken?: string
-  roles?: Roles[]
 }
 
 export interface AuthContextData {
@@ -69,7 +68,6 @@ export interface SignUpRequest {
   username: string
   email: string
   password: string
-  role: Roles[]
 }
 
 export interface SignUpResponse extends GenericResponse {}
@@ -82,3 +80,37 @@ export interface VerifyUserRequest {
 export interface VerifyUserResponse extends GenericResponse {}
 
 export interface LogoutResponse extends GenericResponse {}
+
+export interface HeaderProps {
+  extraComponent?: React.ReactNode
+}
+
+export enum MuscleGroups {
+  ABDOMINALS = 'ABDOMINALS',
+  ABDUCTORS = 'ABDUCTORS',
+  BICEPS = 'BICEPS',
+  CALVES = 'CALVES',
+  CARDIO = 'CARDIO',
+  CHEST = 'CHEST',
+  FOREARMS = 'FOREARMS',
+  FULL_BODY = 'FULL_BODY',
+  GLUTES = 'GLUTES',
+  HAMSTRINGS = 'HAMSTRINGS',
+  LATS = 'LATS',
+  LOWER_BACK = 'LOWER_BACK',
+  QUADRICEPS = 'QUADRICEPS',
+  SHOULDERS = 'SHOULDERS',
+  TRAPS = 'TRAPS',
+  TRICEPS = 'TRICEPS',
+  UPPER_BACK = 'UPPER_BACK',
+  OTHER = 'OTHER'
+}
+
+export enum ExerciseType {
+  WEIGHT = 'WEIGHT',
+  REPS = 'REPS',
+  TIME = 'TIME',
+  DISTANCE = 'DISTANCE',
+  WEIGHT_REPS = 'WEIGHT_REPS',
+  TIME_DISTANCE = 'TIME_DISTANCE'
+}

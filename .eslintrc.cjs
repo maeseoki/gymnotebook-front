@@ -17,6 +17,8 @@ module.exports = {
       {
         "checksVoidReturn": false
       }
-    ]
+    ],
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "react/jsx-max-props-per-line": [1, { "maximum": { "single": 3, "multi": 1 } }],
   }
 }
