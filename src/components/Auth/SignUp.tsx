@@ -97,16 +97,32 @@ export default function SignUp () {
               <Stack spacing='5'>
                 <FormControl>
                   <FormLabel htmlFor='username'>Nombre de usuario</FormLabel>
-                  <Input id='username' type='text' value={signupRequest.username} onChange={e => setSignupRequest({ ...signupRequest, username: e.target.value })} />
+                  <Input
+                    id='username'
+                    type='text'
+                    value={signupRequest.username}
+                    onChange={e => setSignupRequest({ ...signupRequest, username: e.target.value })}
+                  />
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor='email'>Email</FormLabel>
-                  <Input id='email' type='email' value={signupRequest.email} onChange={e => setSignupRequest({ ...signupRequest, email: e.target.value })} />
+                  <Input
+                    id='email'
+                    type='email'
+                    value={signupRequest.email}
+                    onChange={e => setSignupRequest({ ...signupRequest, email: e.target.value })}
+                  />
                 </FormControl>
                 <PasswordField value={signupRequest.password} onChange={e => setSignupRequest({ ...signupRequest, password: e.target.value })} />
               </Stack>
               <Stack spacing='6'>
-                <Button type='submit' isLoading={loading} loadingText='Creando...' variant='outline'>Crear cuenta</Button>
+                <Button
+                  type='submit'
+                  isLoading={loading}
+                  loadingText='Creando...'
+                  variant='outline'
+                >Crear cuenta
+                </Button>
               </Stack>
             </Stack>
           </form>

@@ -106,11 +106,39 @@ export enum MuscleGroups {
   OTHER = 'OTHER'
 }
 
-export enum ExerciseType {
+export enum ExerciseTypeType {
   WEIGHT = 'WEIGHT',
   REPS = 'REPS',
   TIME = 'TIME',
   DISTANCE = 'DISTANCE',
   WEIGHT_REPS = 'WEIGHT_REPS',
   TIME_DISTANCE = 'TIME_DISTANCE'
+}
+
+export interface ExerciseType {
+  id?: number
+  name: string
+  description?: string
+  imageId?: number | null
+  type: ExerciseTypeType
+  primaryMuscleGroup: MuscleGroups
+  secondaryMuscleGroup?: MuscleGroups | null
+}
+
+export interface ExerciseTypeUpdate extends ExerciseType {
+  id: number
+}
+
+export interface ExerciseTypeWithImage extends ExerciseType {
+  imageUrl?: string
+}
+
+export interface userResponse {
+  id: number
+  username: string
+  email: string
+  roles: Array<{
+    id: number
+    name: Roles
+  }>
 }

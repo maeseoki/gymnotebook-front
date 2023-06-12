@@ -10,8 +10,18 @@ export default function Header ({ extraComponent }: HeaderProps) {
     '/workout': 'Entrenamiento',
     '/exercises': 'Ejercicios',
     '/exercises/new': 'Nuevo Ejercicio',
+    '/exercises/:id': 'Editar Ejercicio',
     '/me': 'Mi Perfil',
     '/admin': 'Administración'
+  }
+
+  // Devolvemos el nombre de la ruta actual.
+  const getRouteTitle = () => {
+    if (location.pathname.match(/\/exercises\/\d+/)) {
+      return routesWithNames['/exercises/:id']
+    }
+
+    return routesWithNames[location.pathname]
   }
 
   return (
@@ -36,7 +46,7 @@ export default function Header ({ extraComponent }: HeaderProps) {
           bgClip='text'
           fontWeight='extrabold'
         >
-          {routesWithNames[location.pathname]}
+          {getRouteTitle()}
         </Heading>
         {extraComponent && extraComponent}
       </Flex>
