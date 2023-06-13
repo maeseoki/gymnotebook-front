@@ -7,6 +7,7 @@ import { LoginRequest } from '../../types'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../hooks/userUser'
 import { useGenericToast } from '../../hooks/useGenericToast'
+import Copyright from '../Shared/Copyright'
 
 export default function Login () {
   const navigate = useNavigate()
@@ -32,8 +33,7 @@ export default function Login () {
         description: 'Nombre de usuario o contraseña incorrectos',
         status: 'error',
         duration: 4000,
-        isClosable: true,
-        variant: 'top-accent'
+        isClosable: true
       })
       console.error('Error en la autenticación: ', error)
     } finally {
@@ -99,7 +99,7 @@ export default function Login () {
                   type='submit'
                   isLoading={loading}
                   loadingText='Calentando...'
-                  variant='outline'
+                  variant='solid'
                 >Iniciar sesión
                 </Button>
               </Stack>
@@ -107,6 +107,13 @@ export default function Login () {
           </form>
         </Box>
       </Stack>
+      <Copyright>
+        <>
+          <Text fontSize='sm' color='muted'>
+            Nuestro segundo texto
+          </Text>
+        </>
+      </Copyright>
     </Container>
   )
 }
