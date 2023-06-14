@@ -99,7 +99,7 @@ export default function Login () {
                   type='submit'
                   isLoading={loading}
                   loadingText='Calentando...'
-                  variant='solid'
+                  variant='primarySolid'
                 >Iniciar sesión
                 </Button>
               </Stack>
@@ -107,13 +107,7 @@ export default function Login () {
           </form>
         </Box>
       </Stack>
-      <Copyright>
-        <>
-          <Text fontSize='sm' color='muted'>
-            Nuestro segundo texto
-          </Text>
-        </>
-      </Copyright>
+      <Copyright />
     </Container>
   )
 }

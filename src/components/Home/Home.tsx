@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext'
 import { AuthContextData } from '../../types'
-import { Button, Alert, AlertDescription, AlertIcon, AlertTitle, HStack, Link, chakra } from '@chakra-ui/react'
+import { Button, Alert, AlertDescription, AlertIcon, AlertTitle, HStack } from '@chakra-ui/react'
 import { GiTrafficCone } from 'react-icons/gi'
 import { Link as RouterLink } from 'react-router-dom'
 

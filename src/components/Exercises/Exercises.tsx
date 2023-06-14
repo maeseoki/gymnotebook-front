@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react'
 import { Box, Button, Heading, Text, Flex, Image, LinkBox, LinkOverlay, Skeleton, useToast, Icon, HStack, SimpleGrid } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { getAllExercises } from '../../services/exerciseService'
-import { ExerciseTypeWithImage } from '../../types.d'
+import { ExerciseTypeWithImage, ExercisesProps } from '../../types.d'
 import defaultExerciseImg from '../../assets/images/default-exercise.jpg'
 import { GiBiceps } from 'react-icons/gi'
 import { IoBarbell } from 'react-icons/io5'
+import { IoMdAdd } from 'react-icons/io'
 import { muscleGroupNames, exerciseTypeNames } from '../../utils/maps'
 
-export default function Exercises () {
+export default function Exercises ({ onExerciseClick }: ExercisesProps) {
   const [exercises, setExercises] = useState<ExerciseTypeWithImage[]>([])
   const [loading, setLoading] = useState(true)
   const toast = useToast()
@@ -45,6 +46,8 @@ export default function Exercises () {
       <Button
         as={RouterLink}
         to='/exercises/new'
+        leftIcon={<IoMdAdd />}
+        variant='primaryOutline'
         width='full'
         mb={5}
       >Nuevo Ejercicio
@@ -54,7 +57,7 @@ export default function Exercises () {
         size='lg'
         mb={5}
         textAlign='center'
-      >Mis Ejercicios
+      >{onExerciseClick ? 'Selecciona un ejercicio' : 'Mis Ejercicios'}
       </Heading>
       {exercises.length === 0 && !loading && (
         <>
@@ -85,8 +88,10 @@ export default function Exercises () {
               w='full'
               p={{ base: 2, sm: 4 }}
               mb={5}
+              cursor='pointer'
               key={exercise.id}
               role='group'
+              onClick={() => onExerciseClick?.(exercise)}
             >
               <SimpleGrid
                 columns={2}
@@ -112,7 +117,9 @@ export default function Exercises () {
                     mb={2}
                     _groupHover={{ color: 'primary.500' }}
                   >
-                    <LinkOverlay as={RouterLink} to={`/exercises/${exercise.id ?? 0}`}>{exercise.name}</LinkOverlay>
+                    {onExerciseClick // Si la prop onExerciseClick está definida, no usamos el LinkOverlay
+                      ? <span>{exercise.name}</span>
+                      : <LinkOverlay as={RouterLink} to={`/exercises/${exercise.id ?? 0}`}>{exercise.name}</LinkOverlay>}
                   </Heading>
                   <Flex justifyContent='space-between' wrap='wrap'>
                     <HStack><Icon as={GiBiceps} /> <Text fontSize='sm' color='gray.500' mb={2}>{muscleGroupNames[exercise.primaryMuscleGroup]}</Text></HStack>

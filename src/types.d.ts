@@ -142,3 +142,81 @@ export interface userResponse {
     name: Roles
   }>
 }
+
+type UUID = `${string}-${string}-${string}-${string}-${string}`
+
+interface Workout {
+  uuid: UUID
+  workoutSets?: WorkoutSet[]
+  startDate: Date
+  endDate?: Date
+  notes?: string
+}
+
+interface WorkoutSet {
+  exercise: ExerciseTypeWithImage
+  sets?: SetType[]
+  startDate: Date
+  endDate?: Date
+  notes?: string
+}
+
+interface SetType {
+  reps?: number
+  weight?: number
+  time?: number
+  distance?: number
+  notes?: string
+  isDropSet: boolean
+  startDate: Date
+}
+
+interface Exercise {
+  id: number
+  name: string
+  exerciseImageId?: number | null
+  type: ExerciseTypeType
+}
+
+interface WorkoutState {
+  workout: Workout | null
+  setWorkout: Dispatch<SetStateAction<Workout | null>>
+}
+
+interface DiscardWorkoutDialogProps {
+  isDiscardOpen: boolean
+  onDiscardClose: () => void
+  discardRef: LegacyRef<HTMLButtonElement> | undefined
+  confirmDiscardWorkout: () => void
+}
+
+interface EndWorkoutDialogProps {
+  isEndOpen: boolean
+  onEndClose: () => void
+  endRef: LegacyRef<HTMLButtonElement> | undefined
+  confirmEndWorkout: () => void
+}
+
+interface ExercisesProps {
+  onExerciseClick?: (exercise: ExerciseTypeWithImage) => void
+}
+
+interface WorkoutControlsProps {
+  setIsAddingExercise: Dispatch<SetStateAction<boolean>>
+}
+
+interface AddSetModalProps {
+  isOpen: boolean
+  onClose: () => void
+  currentWorkoutSet: WorkoutSet | null
+  onAccept: (newSet: SetType) => void
+}
+
+interface SetProps extends SetType {
+  index: number
+  exerciseType: ExerciseTypeType
+}
+
+interface SetsTableHeadProps {
+  exerciseType: ExerciseTypeType
+}

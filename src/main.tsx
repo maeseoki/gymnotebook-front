@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './utils/router.tsx'
@@ -21,12 +20,10 @@ const queryClient = new QueryClient({
 })
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme} toastOptions={toastOptions}>
-        <RouterProvider router={router} fallbackElement={<p>Cargando...</p>} />
-      </ChakraProvider>
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-    </QueryClientProvider>
-  </React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <ChakraProvider theme={theme} toastOptions={toastOptions}>
+      <RouterProvider router={router} fallbackElement={<p>Cargando...</p>} />
+    </ChakraProvider>
+    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+  </QueryClientProvider>
 )

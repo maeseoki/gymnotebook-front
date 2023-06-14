@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
-      { path: 'workout', element: <Workout /> },
+      { path: 'workout/*', element: <Workout /> }, // Añado /* para que funcione el nested routing definido en Workout.tsx
       {
         path: 'exercises',
         element: <ExercisesWrapper />,

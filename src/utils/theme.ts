@@ -28,7 +28,9 @@ export const theme = extendTheme({
     },
     gradients: {
       primaryGradient: 'linear-gradient(to right, #FBB021, #b36a00)',
+      primaryGradientHover: 'linear-gradient(to right, #b36a00, #FBB021)',
       secondaryGradient: 'linear-gradient(to right, #84aaf7, #357ef1)',
+      secondaryGradientHover: 'linear-gradient(to right, #357ef1, #FBB021)',
       primaryToSecondary: 'linear-gradient(to right, #F5A101, #357ef1)',
       secondaryToPrimary: 'linear-gradient(to right, #357ef1, #F5A101)',
       primaryToSecondaryHover: 'linear-gradient(to right, #FBB021, #357ef1)',
@@ -48,11 +50,56 @@ export const theme = extendTheme({
         }
       },
       variants: {
-        solid: {
+        primarySolid: {
           bg: 'primary.300',
           color: 'white',
           _hover: {
             bg: 'primary.600'
+          }
+        },
+        secondarySolid: {
+          bg: 'secondary.300',
+          color: 'white',
+          _hover: {
+            bg: 'secondary.600'
+          }
+        },
+        primaryOutline: {
+          bg: 'transparent',
+          border: '2px solid',
+          borderColor: 'primary.300',
+          color: 'primary.300',
+          _hover: {
+            bg: 'primary.300',
+            color: 'white'
+          }
+        },
+        secondaryOutline: {
+          bg: 'transparent',
+          border: '2px solid',
+          borderColor: 'secondary.300',
+          color: 'secondary.300',
+          _hover: {
+            bg: 'secondary.300',
+            color: 'white'
+          }
+        },
+        primaryGradient: {
+          bgGradient: 'linear(to-r, primary.600, primary.300)',
+          color: 'white',
+          backgroundSize: '200%',
+          transition: 'background-position 0.5s',
+          _hover: {
+            bgPos: 'right center'
+          }
+        },
+        secondaryGradient: {
+          bgGradient: 'linear(to-r, secondary.700, secondary.300)',
+          color: 'white',
+          backgroundSize: '200%',
+          transition: 'background-position 0.5s',
+          _hover: {
+            bgPos: 'right center'
           }
         },
         navigation: {
@@ -68,6 +115,22 @@ export const theme = extendTheme({
             bg: 'transparent',
             color: 'secondary.300'
           }
+        }
+      }
+    },
+    Card: {
+      baseStyle: {
+        '--card-border-color': 'whiteAlpha.300'
+      }
+    },
+    Icon: {
+      variants: {
+        lightning: {
+          color: 'primary.200',
+          filter: 'drop-shadow(0 0 8px rgb(255, 189, 32))'
+        },
+        off: {
+          color: 'gray.800'
         }
       }
     }

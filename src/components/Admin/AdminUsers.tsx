@@ -1,4 +1,4 @@
-import { Text, useToast, Grid, IconButton, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, Button, Box } from '@chakra-ui/react'
+import { Text, useToast, IconButton, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogBody, AlertDialogFooter, Button, Box, Flex } from '@chakra-ui/react'
 import { useState, useEffect, useRef } from 'react'
 import { deleteUser, getAllUsers } from '../../services/userService'
 import { Roles, userResponse } from '../../types.d'
@@ -53,16 +53,19 @@ export default function AdminUsers () {
 
   return (
     <Box>
-      <Grid templateColumns='repeat(3, 1fr)' gap={6}>
+      <Flex flexDir='column' alignItems='center' gap={4}>
         {users.map(user => (
-          <Box
+          <Flex
             key={user.id}
-            w='300px'
             borderWidth='1px'
             borderRadius='lg'
-            overflow='hidden'
+            justifyContent='space-between'
+            alignItems='center'
+            w='100%'
+            px={2}
+            py={3}
           >
-            <Box p='6'>
+            <Box>
               <Box
                 mt='1'
                 fontWeight='semibold'
@@ -77,12 +80,16 @@ export default function AdminUsers () {
             {!user.roles.find((role: { name: Roles }) => role.name === Roles.ROLE_ADMIN as Roles) &&
               <IconButton
                 aria-label='Eliminar usuario'
+                colorScheme='red'
+                variant='outline'
+                color='red.500'
+                fontSize='2xl'
                 icon={<MdDeleteForever />}
                 onClick={async () => await handleDelete(user.id)}
               />}
-          </Box>
+          </Flex>
         ))}
-      </Grid>
+      </Flex>
       <AlertDialog
         isOpen={isOpen}
         leastDestructiveRef={cancelRef}
