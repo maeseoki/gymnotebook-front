@@ -49,7 +49,7 @@ export default function MainNavigation () {
             to='/workout'
             aria-label='Workout'
             variant='navigation'
-            icon={<GiGymBag />}
+            icon={<GiWeightLiftingUp />}
             isActive={location.pathname === '/workout'}
           />
           <IconButton
@@ -57,7 +57,7 @@ export default function MainNavigation () {
             to='/exercises'
             aria-label='Exercises'
             variant='navigation'
-            icon={<GiWeightLiftingUp />}
+            icon={<GiGymBag />}
             isActive={location.pathname === '/exercises'}
           />
           <IconButton
