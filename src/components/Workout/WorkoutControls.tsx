@@ -56,7 +56,7 @@ export default function WorkoutControls ({ setIsAddingExercise }: WorkoutControl
         description: 'Apunta a la luna, si fallas, darás entre las estrellas!!',
         status: 'success'
       })
-      confetti()
+      void confetti()
       setWorkout(null)
     } catch (error) {
       // Workout con ese uuid ya existe

@@ -7,7 +7,6 @@ export const useUser = (): Auth => {
   const { value: token, setItem, removeItem } = useLocalStorage('token')
 
   const addUser = (token: string | null) => {
-    console.log('añade')
     if (token === null) {
       removeItem()
     } else {

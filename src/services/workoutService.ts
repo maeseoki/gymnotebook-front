@@ -7,7 +7,6 @@ export const getAllWorkouts = async (): Promise<Workout[]> => {
 }
 
 export const saveWorkout = async (workout: Workout): Promise<void> => {
-  console.log('workout', workout)
   const response = await apiClient.post('workout', workout)
   return response.data
 }
