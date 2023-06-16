@@ -17,6 +17,9 @@ dependencies:
   '@fontsource-variable/space-grotesk':
     specifier: ^5.0.3
     version: 5.0.3
+  '@formkit/auto-animate':
+    specifier: 1.0.0-beta.6
+    version: 1.0.0-beta.6
   '@hookform/resolvers':
     specifier: ^3.1.0
     version: 3.1.0(react-hook-form@7.44.3)
@@ -1596,6 +1599,10 @@ packages:
 
   /@fontsource-variable/space-grotesk@5.0.3:
     resolution: {integrity: sha512-hs3U0Zy7+t93swf50/LMkredodBmBJUzkl9UWymeJRZqS8SfbuMUOrcCsEbFp94QPNh8lqGrg5xRIhyfD6rNKw==}
+    dev: false
+
+  /@formkit/auto-animate@1.0.0-beta.6:
+    resolution: {integrity: sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==}
     dev: false
 
   /@hookform/resolvers@3.1.0(react-hook-form@7.44.3):

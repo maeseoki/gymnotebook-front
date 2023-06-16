@@ -8,6 +8,7 @@ import { WorkoutContext } from './context/WorkoutContext'
 import { useState, useEffect } from 'react'
 import { useLocalStorage } from './hooks/useLocalStorage'
 import { Workout } from './types'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 export default function App () {
   const { user, addUser: setUser, removeUser } = useUser()
@@ -17,6 +18,7 @@ export default function App () {
   const [workout, setWorkout] = useState<Workout | null>(() => {
     return savedWorkout ? JSON.parse(savedWorkout) : null
   })
+  const [animationParent] = useAutoAnimate()
 
   useEffect(() => {
     // Cada vez que el workout cambie, lo guardamos en localStorage para mantenerlos sincronizados.
@@ -42,6 +44,7 @@ export default function App () {
             pb={12}
             pt={0}
             px={{ base: '2', sm: '8' }}
+            ref={animationParent}
           >
             <Outlet />
           </Container>
