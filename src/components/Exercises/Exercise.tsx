@@ -92,7 +92,7 @@ export default function Exercise () {
         description: 'El ejercicio se ha guardado correctamente',
         status: 'success'
       })
-      navigate('/exercises')
+      navigate(-1)
     } catch (error) {
       const axiosError = error as AxiosError<GenericResponse>
       console.error(axiosError)

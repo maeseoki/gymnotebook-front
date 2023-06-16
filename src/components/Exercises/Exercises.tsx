@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react'
-import { Box, Button, Heading, Text, Flex, Image, LinkBox, LinkOverlay, Skeleton, useToast, Icon, HStack, SimpleGrid } from '@chakra-ui/react'
+import { Box, Button, Heading, Text, Flex, Image, LinkBox, LinkOverlay, Skeleton, useToast, Icon, HStack, SimpleGrid, Input, InputLeftElement, InputGroup } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { getAllExercises } from '../../services/exerciseService'
 import { ExerciseTypeWithImage, ExercisesProps } from '../../types.d'
 import defaultExerciseImg from '../../assets/images/default-exercise.jpg'
 import { GiBiceps } from 'react-icons/gi'
 import { IoBarbell } from 'react-icons/io5'
-import { IoMdAdd } from 'react-icons/io'
+import { IoMdAdd, IoMdSearch } from 'react-icons/io'
 import { muscleGroupNames, exerciseTypeNames } from '../../utils/maps'
 
 export default function Exercises ({ onExerciseClick }: ExercisesProps) {
   const [exercises, setExercises] = useState<ExerciseTypeWithImage[]>([])
   const [loading, setLoading] = useState(true)
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const toast = useToast()
+
+  const filteredExercises = exercises.filter(exercise => exercise.name.toLowerCase().includes(searchQuery.toLowerCase()))
 
   // Cuando se monta el componente, obtenemos todos los ejercicios.
   useEffect(() => {
@@ -43,6 +46,13 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
 
   return (
     <Box p={5} mx='auto'>
+      <Heading
+        as='h2'
+        size='lg'
+        mb={5}
+        textAlign='center'
+      >{onExerciseClick ? 'Selecciona un ejercicio' : 'Mis Ejercicios'}
+      </Heading>
       <Button
         as={RouterLink}
         to='/exercises/new'
@@ -52,14 +62,20 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
         mb={5}
       >Nuevo Ejercicio
       </Button>
-      <Heading
-        as='h2'
-        size='lg'
-        mb={5}
-        textAlign='center'
-      >{onExerciseClick ? 'Selecciona un ejercicio' : 'Mis Ejercicios'}
-      </Heading>
-      {exercises.length === 0 && !loading && (
+      <InputGroup>
+        <InputLeftElement pointerEvents='none'>
+          <Icon as={IoMdSearch} boxSize={6} color='secondary.200' />
+        </InputLeftElement>
+        <Input
+          type='text'
+          placeholder='Buscar ejercicio'
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          variant='filled'
+          mb={5}
+        />
+      </InputGroup>
+      {filteredExercises.length === 0 && !loading && (
         <>
           <Heading
             as='h3'
@@ -78,7 +94,7 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
           justifyContent='space-between'
           mb={5}
         >
-          {exercises.map(exercise => (
+          {filteredExercises.map(exercise => (
             <LinkBox
               as={Flex}
               direction='column'
