@@ -212,6 +212,12 @@ interface AddSetModalProps {
   onAccept: (newSet: SetType) => void
 }
 
+interface ExerciseDetailModalProps {
+  isOpen: boolean
+  onClose: () => void
+  exerciseId: number
+}
+
 interface SetProps extends SetType {
   index: number
   exerciseType: ExerciseTypeType
@@ -219,4 +225,57 @@ interface SetProps extends SetType {
 
 interface SetsTableHeadProps {
   exerciseType: ExerciseTypeType
+}
+
+export interface SetResponse {
+  id: number
+  reps: number
+  weight: number
+  time: number
+  distance: number
+  notes: string | null
+  startDate: string
+  dropSet: boolean
+}
+
+export interface WorkoutSetResponse {
+  id: number
+  startDate: string
+  endDate: string | null
+  exercise: ExerciseType
+  sets: SetResponse[]
+  notes: string | null
+}
+
+export interface Sort {
+  empty: boolean
+  sorted: boolean
+  unsorted: boolean
+}
+
+export interface Pageable {
+  sort: Sort
+  offset: number
+  pageSize: number
+  pageNumber: number
+  unpaged: boolean
+  paged: boolean
+}
+
+export interface WorkoutSetsPageResponse {
+  content: WorkoutSetResponse[]
+  pageable: Pageable
+  last: boolean
+  totalElements: number
+  totalPages: number
+  size: number
+  number: number
+  sort: Sort
+  numberOfElements: number
+  first: boolean
+  empty: boolean
+}
+
+export interface ExerciseDetailProps {
+  exerciseId?: number
 }

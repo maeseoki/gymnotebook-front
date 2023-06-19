@@ -6,7 +6,7 @@ import { useDropzone } from 'react-dropzone'
 import * as yup from 'yup'
 import { useEffect, useState } from 'react'
 import Compressor from 'compressorjs'
-import { MuscleGroups, ExerciseType, GenericResponse, ExerciseTypeType, ExerciseTypeUpdate } from '../../types.d'
+import { MuscleGroups, ExerciseType, GenericResponse, ExerciseTypeType, ExerciseTypeUpdate } from '../../types'
 import { compressorConfig } from '../../utils/compressor'
 import { uploadImage } from '../../services/imageService'
 import { AxiosError } from 'axios'
@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   description: yup.string().optional()
 })
 
-export default function Exercise () {
+export default function ExerciseEdit () {
   const [file, setFile] = useState<Blob | undefined>()
   const [urlImage, setUrlImage] = useState<string | undefined>(undefined)
   const [loading, setLoading] = useState(false)
@@ -151,7 +151,7 @@ export default function Exercise () {
               cursor='pointer'
             >
 
-              <input {...getInputProps()} accept='image/*' />
+              <input {...getInputProps()} accept='image/*' capture />
               {urlImage
                 ? <Image
                     borderRadius='50%'

@@ -9,14 +9,19 @@ export default function Header ({ extraComponent }: HeaderProps) {
     '/': 'The Gym Notebook',
     '/workout': 'Entrenamiento',
     '/exercises': 'Ejercicios',
+    '/exercises/:id': 'Ejercicio',
     '/exercises/new': 'Nuevo Ejercicio',
-    '/exercises/:id': 'Editar Ejercicio',
+    '/exercises/edit/:id': 'Editar Ejercicio',
     '/me': 'Mi Perfil',
     '/admin': 'Administración'
   }
 
   // Devolvemos el nombre de la ruta actual.
   const getRouteTitle = () => {
+    if (location.pathname.match(/\/exercises\/edit\/\d+/)) {
+      return routesWithNames['/exercises/edit/:id']
+    }
+
     if (location.pathname.match(/\/exercises\/\d+/)) {
       return routesWithNames['/exercises/:id']
     }
@@ -28,6 +33,7 @@ export default function Header ({ extraComponent }: HeaderProps) {
     <Box
       bottom={0}
       width='100%'
+      boxShadow='0 2px 8px rgba(255, 189, 32, 0.05)'
       py={2}
       px={{ base: 4, md: 6, lg: 8 }}
       mb={2}

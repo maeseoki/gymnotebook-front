@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { GiTrafficCone } from 'react-icons/gi'
 import { AuthContext } from '../../context/AuthContext'
 import LogOut from '../Auth/LogOut'
+import WorkoutsCalendar from './WorkoutsCalendar'
 
 export default function Me () {
   const { user } = useContext(AuthContext)
@@ -52,6 +53,7 @@ export default function Me () {
           Esta página aún no está disponible. ¡Pero no te preocupes! Estamos trabajando en ello.
         </AlertDescription>
       </Alert>
+      <WorkoutsCalendar />
     </>
   )
 }

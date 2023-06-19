@@ -21,10 +21,11 @@ export default function MainNavigation () {
       position='fixed'
       bottom={0}
       width='100%'
-      py={0}
+      py={2}
       px={{ base: 4, md: 6, lg: 8 }}
       bg={useColorModeValue('gray.100', 'gray.900')}
       borderTop='1px solid'
+      boxShadow='0 -2px 8px rgba(255, 189, 32, 0.05)'
       borderColor={useColorModeValue('gray.200', 'gray.700')}
       zIndex='sticky'
     >

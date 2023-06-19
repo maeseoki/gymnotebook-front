@@ -45,11 +45,11 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
   }, [toast])
 
   return (
-    <Box p={5} mx='auto'>
+    <Box p={2} mx='auto'>
       <Heading
         as='h2'
         size='lg'
-        mb={5}
+        mb={4}
         textAlign='center'
       >{onExerciseClick ? 'Selecciona un ejercicio' : 'Mis Ejercicios'}
       </Heading>
@@ -59,7 +59,7 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
         leftIcon={<IoMdAdd />}
         variant='primaryOutline'
         width='full'
-        mb={5}
+        mb={4}
       >Nuevo Ejercicio
       </Button>
       <InputGroup>
@@ -92,7 +92,7 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
           direction={{ base: 'column', sm: 'row' }}
           wrap={{ base: 'nowrap', sm: 'wrap' }}
           justifyContent='space-between'
-          mb={5}
+
         >
           {filteredExercises.map(exercise => (
             <LinkBox
@@ -103,7 +103,7 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
               overflow='hidden'
               w='full'
               p={{ base: 2, sm: 4 }}
-              mb={5}
+              mb={4}
               cursor='pointer'
               key={exercise.id}
               role='group'
@@ -117,13 +117,12 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
               >
                 <Image
                   borderRadius='full'
-                  boxSize='80px'
+                  boxSize='60px'
                   border='1px dashed var(--chakra-colors-primary-400)'
                   src={exercise.imageId ? `${import.meta.env.VITE_API_URL as string}image/${exercise.imageId}` : defaultExerciseImg}
                   fallbackSrc={defaultExerciseImg}
                   alt={exercise.name}
                   loading='lazy'
-                  mb={5}
                 />
                 <Box>
                   <Heading
@@ -138,7 +137,12 @@ export default function Exercises ({ onExerciseClick }: ExercisesProps) {
                       : <LinkOverlay as={RouterLink} to={`/exercises/${exercise.id ?? 0}`}>{exercise.name}</LinkOverlay>}
                   </Heading>
                   <Flex justifyContent='space-between' wrap='wrap'>
-                    <HStack><Icon as={GiBiceps} /> <Text fontSize='sm' color='gray.500' mb={2}>{muscleGroupNames[exercise.primaryMuscleGroup]}</Text></HStack>
+                    <HStack><Icon as={GiBiceps} />
+                      <Text fontSize='sm' color='gray.500' mb={2}>
+                        {muscleGroupNames[exercise.primaryMuscleGroup]}
+                        {exercise.secondaryMuscleGroup ? `, ${muscleGroupNames[exercise.secondaryMuscleGroup]}` : ''}
+                      </Text>
+                    </HStack>
                     <HStack><Icon as={IoBarbell} /> <Text fontSize='sm' color='gray.500' mb={2}>{exerciseTypeNames[exercise.type]}</Text></HStack>
                   </Flex>
                   <Text fontSize='sm'>{exercise.description}</Text>

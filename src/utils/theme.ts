@@ -35,6 +35,17 @@ export const theme = extendTheme({
       secondaryToPrimary: 'linear-gradient(to right, #357ef1, #F5A101)',
       primaryToSecondaryHover: 'linear-gradient(to right, #FBB021, #357ef1)',
       secondaryToPrimaryHover: 'linear-gradient(to right, #357ef1, #FBB021)'
+    },
+    shadows: {
+      primary: '0 0 8px rgb(255, 189, 32)',
+      secondary: '0 0 8px rgb(53, 126, 241)',
+      tertiary: '0 0 8px rgb(255, 189, 32)',
+      soft: '0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
+      strong: '0 10px 15px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08)',
+      topGold: '0 -4px 8px rgba(255, 189, 32, 0.11)',
+      topBlue: '0 -4px 8px rgba(53, 126, 241, 0.11)',
+      bottomGold: '0 4px 8px rgba(255, 189, 32, 0.11)',
+      bottomBlue: '0 4px 8px rgba(53, 126, 241, 0.11)'
     }
   },
   components: {
